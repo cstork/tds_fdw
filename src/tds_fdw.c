@@ -3393,10 +3393,10 @@ tdsImportSybaseSchema(ImportForeignSchemaStmt *stmt, DBPROCESS  *dbproc,
 						   "  sc.scale "
 						   "FROM sysobjects so "
 						   "  INNER JOIN sysusers su ON su.uid = so.uid"
-						   "  LEFT JOIN syscolumns sc ON sc.id = so.id "
+						   "  LEFT JOIN dbo.syscolumns sc ON sc.id = so.id "
 						   "  LEFT JOIN systypes st ON st.usertype = sc.usertype "
 						   "  LEFT JOIN syscomments sm ON sm.id = sc.cdefault "
-						   "WHERE so.type = 'U' AND su.name = ");
+						   "WHERE so.type IN ('U','V') AND su.name = ");
 
 	deparseStringLiteral(&buf, stmt->remote_schema);
 
